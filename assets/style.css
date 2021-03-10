@@ -17,9 +17,45 @@ h1 {
 }
 
 .select-state {
-    background-color: rgb(179, 236, 238);
+    background-color: rgb(75, 76, 77);
+    height: 800px;
 }
 
 .cards {
     background-color: rgb(207, 237, 238);
+}
+
+.map-select {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  path:hover, circle:hover {
+    stroke: #3b3c3d !important;
+    stroke-width:2px;
+    stroke-linejoin: round;
+    fill: #3b3c3d !important;
+    cursor: pointer;
+  }
+
+  #path67 {
+  fill: none !important;
+  stroke: #A9A9A9 !important;
+  cursor: default;
+}
+
+#info-box {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  background-color: #b4b4b4bb;
+
+  /* border-radius: 5px; */
+  padding: 5px;
+  font-family: arial;
 }
