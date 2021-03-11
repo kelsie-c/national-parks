@@ -19,8 +19,8 @@ $("path, circle").mouseleave(function(e) {
 });
 
 $(document).mousemove(function(e) {
-  $('#info-box').css('top',e.pageY-$('#info-box').height()-400);
-  $('#info-box').css('left',e.pageX-($('#info-box').width())/2 + 30);
+  $('#info-box').css('top',e.pageY-$('#info-box').height()-680);
+  $('#info-box').css('left',e.pageX-($('#info-box').width())/2 );
 }).mouseover();
 
 
