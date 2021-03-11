@@ -1,24 +1,74 @@
+:root {
+  --blue: #00b2e2;
+  --green: #425d29;
+  --lghtgreen: rgb(127, 143, 110);
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--green);
+}
+
 h1 {
-    font-size: 50px;
-    font-weight: bold;
-    margin-bottom: 50px;
+  font-family: 'Averia Serif Libre', cursive;
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: -20px;
+  color: var(--green);
 }
 
 .container {
     text-align: center;
-    padding: 100px 0px 100px 0px;
-    margin-left: 0px;
-    margin-right: 0px;
+    padding-top: 100px;
+    left: 0vw;
     width: 100%;
 }
 
+.columns {
+  margin-bottom: -10px;
+  padding-bottom: -10px;
+}
+
 .header {
-    background-color: rgb(207, 237, 238);
+    padding-top: 50px;
+    background-color: #cacaca;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.dropdown {
+  display: block;
+  text-align: center;
+  left: 45vw;
+  padding-top: 50px;
+  width: 100px;
+}
+
+.dropdown-menu {
+  position: relative;
+  width: 100px;
+  text-align: left;
+  margin-top: -50px;
+}
+
+.dropdown-content {
+  max-height: 13em;
+  overflow: auto;
 }
 
 .select-state {
-    background-color: rgb(75, 76, 77);
-    height: 800px;
+    display: flex;
+    background-color: white;
+    height: 100px;
+}
+
+.select-map {
+  text-align: center;
+  background-color: white;
+  height: 700px;
+  position: relative;
 }
 
 .cards {
@@ -32,16 +82,20 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-  }
-  path:hover, circle:hover {
-    stroke: #3b3c3d !important;
+}
+.map-select path:hover, .map-select circle:hover {
+    stroke: var(--lghtgreen) !important;
     stroke-width:2px;
     stroke-linejoin: round;
-    fill: #3b3c3d !important;
+    fill: var(--lghtgreen) !important;
     cursor: pointer;
-  }
+}
 
-  #path67 {
+.map-select path, .map-select circle {
+    fill: var(--green);
+}
+
+.map-select #path67 {
   fill: none !important;
   stroke: #A9A9A9 !important;
   cursor: default;
@@ -50,12 +104,18 @@ h1 {
 #info-box {
   display: none;
   position: absolute;
-  top: 0px;
+  top: 0;
   left: 0px;
   z-index: 1;
   background-color: #b4b4b4bb;
-
-  /* border-radius: 5px; */
   padding: 5px;
-  font-family: arial;
+  font-size: 16px;
+  color: black;
+}
+
+footer {
+  padding-top: 25px;
+  background-color: #cacaca;
+  text-align: center;
+  height: 75px;
 }
