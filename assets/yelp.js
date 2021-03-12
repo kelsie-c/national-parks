@@ -10,13 +10,20 @@ let lon = park.lon;
 console.log(park);
 let myHeaders = new Headers();
 myHeaders.append("Authorization", "Bearer " + YelpApiKey);
-fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?categories=restaurant&limit=10&latitude=' + lat + '&longitude=' + lon +'&radius=40000',{
+fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?categories=restaurant&limit=50&latitude=' + lat + '&longitude=' + lon +'&radius=40000',{
   headers: myHeaders
 }) .then((res) => {
   return res.json();
 }).then((data) => { 
-  let rest = data.businesses;
-  console.log(rest);
+  let rest 
+  // console.log(rest);
+  rest = data.businesses.sort(function(a, b) {
+    return b.rating - a.rating
+  })
+ 
+  rest = rest.slice(0 , 10)
+  console.log(rest)
+
   for (let i = 0; i < rest.length; i++) {
     let restName = rest[i].name;
     let restPrice=rest[i].price;
@@ -42,9 +49,12 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
   yelpColumn3.classList.add('column');
   let yelpColumn4 = document.createElement('div');
   yelpColumn4.classList.add('column');
+ let yelpColumn5 = document.createElement('div');
+  yelpColumn5.classList.add('column');
   
 
-  let yelpTitle = document.createElement('h4');
+  let yelpTitle = document.createElement('a');
+  yelpTitle.href = 'https://www.google.com/search?q=' + restName + '-' + rest[i].location.city;
   yelpTitle.innerHTML = restName;
   let yelpPrice = document.createElement('div');
   yelpPrice.innerHTML = restPrice;
@@ -57,6 +67,9 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
   let yelpRating = document.createElement('div');
   yelpRating.innerHTML = "Rating: " + restRating;
 
+  let yelpReview = document.createElement('a');
+  yelpReview.href = rest[i].url;
+  yelpReview.innerHTML = 'Read Reviews'
   yelpColumn1.appendChild(yelpTitle);
   yelpColumn1.appendChild(yelpPrice);
 
@@ -65,11 +78,12 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
   yelpColumn3.appendChild(yelpRating); 
 
   yelpColumn4.appendChild(yelpCuisine);
-
+  yelpColumn5.appendChild(yelpReview)
   yelpContain.appendChild(yelpColumn1);
   yelpContain.appendChild(yelpColumn2);
   yelpContain.appendChild(yelpColumn3);
   yelpContain.appendChild(yelpColumn4);
+  yelpContain.appendChild(yelpColumn5)
 
   yelpDiv.appendChild(yelpContain);
 
