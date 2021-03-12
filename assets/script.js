@@ -94,8 +94,6 @@ function getParks(stateCode) {
             let descr = document.createElement("div");
             descr.setAttribute('id', parkCode2);
             descr.innerHTML = description;
-            // let weatherNow = document.createElement("div");
-            // weatherNow.innerHTML = weather;
             let lineBreak = document.createElement('br');
 
             let fees = document.createElement("div");
@@ -115,15 +113,11 @@ function getParks(stateCode) {
             columnContain.appendChild(column1);
             columnContain.appendChild(column2);
             parkCard.appendChild(columnContain);
-            // parkCard.appendChild(weatherNow);
-            
 
             cardEl.appendChild(parkCard);
         }
     })
 }
-
-
 
 cardEl.addEventListener("click", function(event) {
     console.log(parkCode2);
@@ -150,5 +144,4 @@ function parkInfo(parkCode) {
         localStorage.setItem('selectedPark', JSON.stringify(parkData));
         window.location.replace("./parks.html");
     })
-    
 }

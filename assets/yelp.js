@@ -2,8 +2,6 @@
 let YelpApiKey = 'EeR6NirnQfOfnuwRkrjEiVbIU0Ik9uAvE8u0Y61gWxPC9aCE88gzTeMoUmbN8kuVi7V2bKqr4ytbD2ZlZcafYawBJ0ZKTkQTQggA1O0Y-Y3RCLNKh0W1rgba5J1DYHYx'
 let apiID = '8LQ2i3BiP9enfShN1zI6IA'
 
-
-
 let park = JSON.parse(localStorage.getItem('selectedPark'));
 let lat = park.lat;
 let lon = park.lon;
@@ -12,6 +10,7 @@ let myHeaders = new Headers();
 myHeaders.append("Authorization", "Bearer " + YelpApiKey);
 fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?categories=restaurant&limit=50&latitude=' + lat + '&longitude=' + lon +'&radius=40000',{
   headers: myHeaders
+
 }) .then((res) => {
   return res.json();
 }).then((data) => { 
@@ -49,7 +48,7 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
   yelpColumn3.classList.add('column');
   let yelpColumn4 = document.createElement('div');
   yelpColumn4.classList.add('column');
- let yelpColumn5 = document.createElement('div');
+  let yelpColumn5 = document.createElement('div');
   yelpColumn5.classList.add('column');
   
 
@@ -64,8 +63,7 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
   yelpCuisine.classList.add("cuisine");
   yelpCuisine.innerHTML = "Cuisine: " + restCuisine;
 
-  let yelpRating = document.createElement('div');
-  yelpRating.innerHTML = "Rating: " + restRating;
+
 
   let yelpReview = document.createElement('a');
   yelpReview.href = rest[i].url;
@@ -73,9 +71,13 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
   yelpColumn1.appendChild(yelpTitle);
   yelpColumn1.appendChild(yelpPrice);
 
-  yelpColumn2.appendChild(yelpLocation);
-  
-  yelpColumn3.appendChild(yelpRating); 
+  let yelpRating = document.createElement('div');
+  yelpRating.innerHTML = "Rating: " + restRating;
+
+
+  yelpColumn1.appendChild(yelpTitle);
+  yelpColumn1.appendChild(yelpPrice);
+
 
   yelpColumn4.appendChild(yelpCuisine);
   yelpColumn5.appendChild(yelpReview)
@@ -85,28 +87,24 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
   yelpContain.appendChild(yelpColumn4);
   yelpContain.appendChild(yelpColumn5)
 
+  yelpColumn2.appendChild(yelpLocation);
+
+  yelpColumn3.appendChild(yelpRating); 
+
+
+
+
+  yelpContain.appendChild(yelpColumn1);
+  yelpContain.appendChild(yelpColumn2);
+  yelpContain.appendChild(yelpColumn3);
+  yelpContain.appendChild(yelpColumn4);
+
   yelpDiv.appendChild(yelpContain);
 
   let yelpEl = document.querySelector('.nearby-food');
 
   yelpEl.append(yelpDiv);
 
-  
-
   console.log(data);
 };
-// 'latitude=' + lat + '&longitude=' + lon +'&radius=40000'
-            
-           
-                // let restname = document.createElement('h2') 
-                // console.log(day)
-                // let month = (new Date().getMonth() + 1)
-                // let year = new Date().getFullYear()
-                // let date = document.createElement('p')
-                // let temp = document.createElement('p')
-                // temp.textContent = 'Temperature: ' +
-                // date.textContent = month + '/' + day + '/' + year
-                // forecastDiv.appendChild(date)
-                // forecastDiv.appendChild(hello)
-                // sevenDayDiv.appendChild(Div)
-            }) 
+}) 
