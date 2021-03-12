@@ -1,14 +1,24 @@
 :root {
   --blue: #00b2e2;
-  --green: #425d29;
-  --lghtgreen: rgb(127, 143, 110);
+  --darkWoodland: #425d29;
+  --lghtWoodland: rgb(127, 143, 110);
 }
+
+.svg-container { 
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	padding-bottom: 30px; 
+	vertical-align: middle; 
+	overflow: hidden; 
+}
+
 
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 24px;
-  color: var(--green);
+  color: var(--darkWoodland);
 }
 
 h1 {
@@ -16,7 +26,7 @@ h1 {
   font-size: 50px;
   font-weight: bold;
   margin-bottom: -20px;
-  color: var(--green);
+  color: var(--darkWoodland);
 }
 
 .container {
@@ -84,15 +94,15 @@ h1 {
     height: 100%;
 }
 .map-select path:hover, .map-select circle:hover {
-    stroke: var(--lghtgreen) !important;
+    stroke: var(--lghtWoodland) !important;
     stroke-width:2px;
     stroke-linejoin: round;
-    fill: var(--lghtgreen) !important;
+    fill: var(--lghtWoodland) !important;
     cursor: pointer;
 }
 
 .map-select path, .map-select circle {
-    fill: var(--green);
+    fill: var(--darkWoodland);
 }
 
 .map-select #path67 {
@@ -113,9 +123,84 @@ h1 {
   color: black;
 }
 
+.returnBtn {
+  margin-left: 200px;
+}
+
+.park-cards .tile {
+  padding: 3%;
+  border-radius: 50px;
+  background-color: beige;
+  margin: 3%;
+}
+
+.park-cards .tile img {
+  height: 200px;
+  border-radius: 10px;
+}
+
+.park-cards h4 {
+  font-size: 32px;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.park-cards div {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.park-data {
+  margin: 10px 150px 10px 150px;
+}
+
+.park-data .tile {
+  padding: 10px 50px 10px 50px;
+}
+
+.park-data h4 {
+  font-size: 32px;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.park-data img {
+  height: 450px;
+  border-radius: 10px;
+}
+
+.nearby-food .tile {
+  background-color: beige;
+  border-radius: 10px;
+  margin: 25px 150px 25px 150px;
+  padding: 10px 50px 10px 50px;
+}
+
+.cuisine {
+  text-transform: capitalize;
+}
+
 footer {
   padding-top: 25px;
   background-color: #cacaca;
   text-align: center;
-  height: 75px;
+  height: 125px;
+}
+
+@media screen and (max-width: 550px) {
+  h4 {
+    text-align: center;
+  }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  svg {
+    width: 306 !important;
+    height: 206 !important;
+  }
 }

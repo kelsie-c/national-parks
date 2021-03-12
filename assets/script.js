@@ -1,7 +1,3 @@
-// Variables
-
-
-
 // set click event for dropdown menu
 var dropdown = document.querySelector('.dropdown');
 dropdown.addEventListener('click', function(event) {
@@ -23,23 +19,12 @@ $(document).mousemove(function(e) {
   $('#info-box').css('left',e.pageX-($('#info-box').width())/2 );
 }).mouseover();
 
-
-//Yelp Api
-let YelpApiKey = 'EeR6NirnQfOfnuwRkrjEiVbIU0Ik9uAvE8u0Y61gWxPC9aCE88gzTeMoUmbN8kuVi7V2bKqr4ytbD2ZlZcafYawBJ0ZKTkQTQggA1O0Y-Y3RCLNKh0W1rgba5J1DYHYx'
-let apiID = '8LQ2i3BiP9enfShN1zI6IA'
-
-let myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer " + YelpApiKey);
-
-fetch("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?categories=restaurant&limit=10&location=New York", {
-  headers: myHeaders 
-}).then((res) => {
-  return res.json();
-}).then((json) => {
-  console.log(json);
-});
-
-
+let mapArea = document.querySelector('.map-select');
+mapArea.addEventListener("click", function(event) {
+  let stateCode = event.target.id;
+  console.log(stateCode);
+  getParks(stateCode);
+})
 
 let dropState = document.querySelector(".dropdown-content")
 let cardEl = document.querySelector('.park-cards');
@@ -52,22 +37,8 @@ dropState.addEventListener('click', function(event) {
     getParks(stateCode);
 })
 
-// function stateParks(element) {
-//     return document.createElement(element);
-// }
-
-// function append(parent, selectEl) {
-//   return parent.appendChild(selectEl);
-// }
-
-// let apiKey = 'evgZSRmp1QB2J4yPr1xzabZ2pjAaMHZHVRCWa1GX';
-// const url = ('https://developer.nps.gov/api/v1/parks?' + 'stateCode=' + state + '&api_key=' + apiKey)
-
-// const ul = document.getElementById('parks');
-
-//fetch API
 let apiKey = 'evgZSRmp1QB2J4yPr1xzabZ2pjAaMHZHVRCWa1GX';
-//let state = '';
+let parkCode2;
 
 function getParks(stateCode) {
     fetch('https://developer.nps.gov/api/v1/parks?' + 'stateCode=' + stateCode + '&api_key=' + apiKey) 
@@ -76,67 +47,87 @@ function getParks(stateCode) {
     })
     .then(data=> {
         console.log(data.data);
+        var div = document.querySelector('.park-cards');
+        while(div.firstChild){
+            div.removeChild(div.firstChild);
+        }
         const html= data.data
+        
         for (i = 0; i < html.length; i++) {
             let parkName = html[i].name;
+            parkCode2 = html[i].parkCode;
             let description = html[i].description;
-            let weather = html[i].weatherInfo;
+            // let weather = html[i].weatherInfo;
             let admission = html[i].entranceFees[0].cost;
-            // let hours = JSON.stringify(html[i].operatingHours[0].standardHours);
             let latitude = html[i].latitude;
             let longitude = html[i].longitude;
+            let imageURL = html[i].images[0].url;
 
             let parkCard = document.createElement("div");
-            parkCard.classList.add("tile");
-            
+            parkCard.classList.add("tile"); 
+            parkCard.classList.add("is-vertical");
+            parkCard.setAttribute('id', parkCode2);
+
+            let columnContain = document.createElement("div");
+            columnContain.classList.add("columns");
+            columnContain.classList.add("is-desktop");
+            columnContain.setAttribute('id', parkCode2);
+
+            let column1 = document.createElement("div");
+            column1.classList.add("column");
+            column1.classList.add("is-one-quarter");
+            column1.setAttribute('id', parkCode2);
+
+            let column2 = document.createElement("div");
+            column2.classList.add("column");
+            column2.setAttribute('id', parkCode2);
 
             let cardTitle = document.createElement("h4");
+            cardTitle.setAttribute('id', parkCode2);
             cardTitle.innerHTML = parkName;
             console.log(cardTitle);
 
+            let cardImage = document.createElement("img");
+            cardImage.setAttribute('id', parkCode2);
+            cardImage.src = imageURL;
+
             let descr = document.createElement("div");
+            descr.setAttribute('id', parkCode2);
             descr.innerHTML = description;
-            let weatherNow = document.createElement("div");
-            weatherNow.innerHTML = weather;
+            // let weatherNow = document.createElement("div");
+            // weatherNow.innerHTML = weather;
+            let lineBreak = document.createElement('br');
+
             let fees = document.createElement("div");
-            fees.innerHTML = admission;
-            // let opHours = document.createElement("div");
-            // opHours.innerHTML = hours;
+            fees.setAttribute('id', parkCode2);
+            fees.innerHTML = "Adult Day Pass Cost: $" + admission;
+
             let lat = document.createElement("div");
             lat.innerHTML = latitude;
             let lon = document.createElement("div");
             lon.innerHTML = longitude;
 
             parkCard.appendChild(cardTitle);
-            parkCard.appendChild(descr);
-            parkCard.appendChild(weatherNow);
-            parkCard.appendChild(fees);
-            // parkCard.appendChild(opHours);
+            column1.appendChild(cardImage);
+            column2.appendChild(descr);
+            column2.appendChild(lineBreak);
+            column2.appendChild(fees);
+            columnContain.appendChild(column1);
+            columnContain.appendChild(column2);
+            parkCard.appendChild(columnContain);
+            // parkCard.appendChild(weatherNow);
+            
 
             cardEl.appendChild(parkCard);
         }
-
-        
-    
-
-        // .map(user => {
-        //     return `
-        //     <div class="park">
-        //     <p>Park: ${fullname}</p>
-        //     <p>Description:${description}</p>
-        //     <p>Weather:${weatherInfo}</p>
-        //     <p>Admission Cost:${fees}</p>
-        //     <p>Hours:${standardHours}</p>
-        //     </div>
-        //     `;
-        // })
     })
 }
 
 
+
 cardEl.addEventListener("click", function(event) {
-    let parkChosen = event.target.innerHTML;
-    let parkCode = parkChosen.substring(0,4);
+    console.log(parkCode2);
+    let parkCode = event.target.id;
     console.log(parkCode);
     parkInfo(parkCode);
 })

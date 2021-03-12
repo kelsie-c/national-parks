@@ -20,12 +20,30 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
   for (let i = 0; i < rest.length; i++) {
     let restName = rest[i].name;
     let restPrice=rest[i].price;
+    if (restPrice === undefined) {
+      restPrice = " ";
+    }
     let restLocation= rest[i].location.address1 + ' ' +rest[i].location.city +' ' + rest[i].location.state +' ' + rest[i].location.zip_code;
     let restRating=rest[i].rating;
     let restCuisine = rest[i].categories[0].alias;
 
   let yelpDiv = document.createElement('div');
   yelpDiv.classList.add('tile');
+  yelpDiv.classList.add('is-vertical');
+  
+  let yelpContain = document.createElement('div');
+  yelpContain.classList.add('columns');
+  yelpContain.classList.add("is-desktop");
+  let yelpColumn1 = document.createElement('div');
+  yelpColumn1.classList.add('column');
+  let yelpColumn2 = document.createElement('div');
+  yelpColumn2.classList.add('column');
+  let yelpColumn3 = document.createElement('div');
+  yelpColumn3.classList.add('column');
+  let yelpColumn4 = document.createElement('div');
+  yelpColumn4.classList.add('column');
+  
+
   let yelpTitle = document.createElement('h4');
   yelpTitle.innerHTML = restName;
   let yelpPrice = document.createElement('div');
@@ -33,16 +51,27 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
   let yelpLocation = document.createElement('div');
   yelpLocation.innerHTML = restLocation;
   let yelpCuisine = document.createElement('div');
-  yelpCuisine.innerHTML = restCuisine;
+  yelpCuisine.classList.add("cuisine");
+  yelpCuisine.innerHTML = "Cuisine: " + restCuisine;
 
   let yelpRating = document.createElement('div');
-  yelpRating.innerHTML = restRating;
+  yelpRating.innerHTML = "Rating: " + restRating;
 
-  yelpDiv.appendChild(yelpTitle);
-  yelpDiv.appendChild(yelpPrice);
-  yelpDiv.appendChild(yelpLocation);
-  yelpDiv.appendChild(yelpRating); 
-  yelpDiv.appendChild(yelpCuisine);
+  yelpColumn1.appendChild(yelpTitle);
+  yelpColumn1.appendChild(yelpPrice);
+
+  yelpColumn2.appendChild(yelpLocation);
+  
+  yelpColumn3.appendChild(yelpRating); 
+
+  yelpColumn4.appendChild(yelpCuisine);
+
+  yelpContain.appendChild(yelpColumn1);
+  yelpContain.appendChild(yelpColumn2);
+  yelpContain.appendChild(yelpColumn3);
+  yelpContain.appendChild(yelpColumn4);
+
+  yelpDiv.appendChild(yelpContain);
 
   let yelpEl = document.querySelector('.nearby-food');
 
