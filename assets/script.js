@@ -40,24 +40,25 @@ fetch("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
 });
 
 
-let subbtn = document.querySelector('#submit-btn');
-let selectEl = document.querySelector('#selectPark')
-let cardEl = document.querySelector('#parkList');
+
+let dropState = document.querySelector(".dropdown-content")
+let cardEl = document.querySelector('.park-cards');
 let target; 
-subbtn.addEventListener('click', function(event) {
-    event.preventDefault;
-    console.log(selectEl.value);
-    state= selectEl.value;
-    getParks(state);
+dropState.addEventListener('click', function(event) {
+  let choiceState = event.target.innerHTML;
+    console.log(choiceState);
+    let stateCode = choiceState.substring(0,2);
+    console.log(stateCode);
+    getParks(stateCode);
 })
 
-function stateParks(element) {
-    return document.createElement(element);
-}
+// function stateParks(element) {
+//     return document.createElement(element);
+// }
 
-function append(parent, selectEl) {
-  return parent.appendChild(selectEl);
-}
+// function append(parent, selectEl) {
+//   return parent.appendChild(selectEl);
+// }
 
 // let apiKey = 'evgZSRmp1QB2J4yPr1xzabZ2pjAaMHZHVRCWa1GX';
 // const url = ('https://developer.nps.gov/api/v1/parks?' + 'stateCode=' + state + '&api_key=' + apiKey)
@@ -68,8 +69,8 @@ function append(parent, selectEl) {
 let apiKey = 'evgZSRmp1QB2J4yPr1xzabZ2pjAaMHZHVRCWa1GX';
 //let state = '';
 
-function getParks(state) {
-    fetch('https://developer.nps.gov/api/v1/parks?' + 'stateCode=' + state + '&api_key=' + apiKey) 
+function getParks(stateCode) {
+    fetch('https://developer.nps.gov/api/v1/parks?' + 'stateCode=' + stateCode + '&api_key=' + apiKey) 
     .then(response=>{
         return response.json();
     })
@@ -156,6 +157,7 @@ function parkInfo(parkCode) {
         }
         
         localStorage.setItem('selectedPark', JSON.stringify(parkData));
+        window.location.replace("./parks.html");
     })
     
 }
