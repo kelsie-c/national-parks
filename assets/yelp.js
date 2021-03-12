@@ -77,8 +77,8 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
 
   yelpColumn1.appendChild(yelpTitle);
   yelpColumn1.appendChild(yelpPrice);
-
-
+  yelpColumn2.appendChild(yelpLocation);
+  yelpColumn3.appendChild(yelpRating); 
   yelpColumn4.appendChild(yelpCuisine);
   yelpColumn5.appendChild(yelpReview)
   yelpContain.appendChild(yelpColumn1);
@@ -86,18 +86,6 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
   yelpContain.appendChild(yelpColumn3);
   yelpContain.appendChild(yelpColumn4);
   yelpContain.appendChild(yelpColumn5)
-
-  yelpColumn2.appendChild(yelpLocation);
-
-  yelpColumn3.appendChild(yelpRating); 
-
-
-
-
-  yelpContain.appendChild(yelpColumn1);
-  yelpContain.appendChild(yelpColumn2);
-  yelpContain.appendChild(yelpColumn3);
-  yelpContain.appendChild(yelpColumn4);
 
   yelpDiv.appendChild(yelpContain);
 
