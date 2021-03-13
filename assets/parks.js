@@ -4,6 +4,7 @@ let parkCode = parkObj.parkCode;
 console.log(parkCode);
 parkInfo(parkCode);
 
+// call api by park code from local storage
 function parkInfo(parkCode) {
     let apiTwo = ('https://developer.nps.gov/api/v1/parks?' + 'parkCode=' + parkCode + '&parkCode=&api_key=' + 'evgZSRmp1QB2J4yPr1xzabZ2pjAaMHZHVRCWa1GX');
     fetch(apiTwo)
@@ -11,6 +12,7 @@ function parkInfo(parkCode) {
         return response.json();
     })
     .then(data=> {
+        // assign data to variables and append to page
         console.log(data.data);
         let parksName = data.data[0].name;
         let parksImgURL = data.data[0].images[0].url;

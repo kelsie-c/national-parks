@@ -2,6 +2,7 @@
 let YelpApiKey = 'EeR6NirnQfOfnuwRkrjEiVbIU0Ik9uAvE8u0Y61gWxPC9aCE88gzTeMoUmbN8kuVi7V2bKqr4ytbD2ZlZcafYawBJ0ZKTkQTQggA1O0Y-Y3RCLNKh0W1rgba5J1DYHYx'
 let apiID = '8LQ2i3BiP9enfShN1zI6IA'
 
+// get lat & lon from local storage and call yelp api
 let park = JSON.parse(localStorage.getItem('selectedPark'));
 let lat = park.lat;
 let lon = park.lon;
@@ -15,7 +16,7 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
   return res.json();
 }).then((data) => { 
   let rest 
-  // console.log(rest);
+  // assign data to variables and append to page
   rest = data.businesses.sort(function(a, b) {
     return b.rating - a.rating
   })

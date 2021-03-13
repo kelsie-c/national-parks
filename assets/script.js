@@ -5,6 +5,7 @@ dropdown.addEventListener('click', function(event) {
   dropdown.classList.toggle('is-active');
 });
 
+// set hover for info box and mousemove to follow cursor
 $("path, circle").hover(function(e) {
   $('#info-box').css('display','block');
   $('#info-box').html($(this).data('info'));
@@ -19,6 +20,7 @@ $(document).mousemove(function(e) {
   $('#info-box').css('left',e.pageX-($('#info-box').width())/2 + 20);
 }).mouseover();
 
+// set event listener for click on map
 let mapArea = document.querySelector('.map-select');
 mapArea.addEventListener("click", function(event) {
   let stateCode = event.target.id;
@@ -26,6 +28,7 @@ mapArea.addEventListener("click", function(event) {
   getParks(stateCode);
 })
 
+// set event listener to click on dropdown
 let dropState = document.querySelector(".dropdown-content")
 let cardEl = document.querySelector('.park-cards');
 let target; 
@@ -37,6 +40,7 @@ dropState.addEventListener('click', function(event) {
     getParks(stateCode);
 })
 
+// nat'l parks api call
 let apiKey = 'evgZSRmp1QB2J4yPr1xzabZ2pjAaMHZHVRCWa1GX';
 let parkCode2;
 
@@ -48,6 +52,7 @@ function getParks(stateCode) {
     .then(data=> {
         console.log(data.data);
         var div = document.querySelector('.park-cards');
+        // deletes any cards already on the page
         while(div.firstChild){
             div.removeChild(div.firstChild);
         }
@@ -119,6 +124,7 @@ function getParks(stateCode) {
     })
 }
 
+// set event listener for card click
 cardEl.addEventListener("click", function(event) {
     console.log(parkCode2);
     let parkCode = event.target.id;
@@ -126,6 +132,7 @@ cardEl.addEventListener("click", function(event) {
     parkInfo(parkCode);
 })
 
+// call api by park code and send to local storage
 function parkInfo(parkCode) {
     let apiTwo = ('https://developer.nps.gov/api/v1/parks?' + 'parkCode=' + parkCode + '&parkCode=&api_key=' + apiKey);
     console.log(apiTwo);
