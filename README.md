@@ -12,7 +12,7 @@ For this project, our team was tasked with creating a website that:
 
 [See our live app](https://kelsie-c.github.io/national-parks/index.html)
 
-**Please Note: ** This app uses Heroku to make the Yelp API calls. The first time you visit the site and select a park, you must open your console and click the link that directs you to Heroku where you must request temporary access. The site should then work when you refresh the page.
+**Please Note:** This app uses Heroku to make the Yelp API calls. The first time you visit the site and select a park, you must open your console and click the link that directs you to Heroku where you must request temporary access. The site should then work when you refresh the page.
 
 [See our project presentation](https://docs.google.com/presentation/d/19Boenw4lvCj53aU_1DpNeGzk6PujBN4b/edit#slide=id.p1)
 
