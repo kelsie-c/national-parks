@@ -15,8 +15,8 @@ $("path, circle").mouseleave(function(e) {
 });
 
 $(document).mousemove(function(e) {
-  $('#info-box').css('top',e.pageY-$('#info-box').height()-680);
-  $('#info-box').css('left',e.pageX-($('#info-box').width())/2 );
+  $('#info-box').css('top',e.pageY-$('#info-box').height()-730);
+  $('#info-box').css('left',e.pageX-($('#info-box').width())/2 + 20);
 }).mouseover();
 
 let mapArea = document.querySelector('.map-select');

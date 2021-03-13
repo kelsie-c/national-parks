@@ -18,7 +18,7 @@ For this project, our team was tasked with creating a website that:
 
 In the ideation stage, we decided to use the National Parks API and the Yelp API. By selecting a state and a national park, users will then be shown the 10 closest restaurants to their chosen park. 
 
-![Our Wireframe](./assets/HungrHungryHikers2.png)
+![Our Wireframe](./assets/HungryHungryHikers2.png)
 
 ## Skills Used
 
@@ -34,7 +34,7 @@ In the ideation stage, we decided to use the National Parks API and the Yelp API
 
 ## Web App Preview
 
-add gif walkthrough here
+![Web App Walkthrough](./assets/walkthrough.gif)
 
 ## Challenges
 

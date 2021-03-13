@@ -54,6 +54,7 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
 
   let yelpTitle = document.createElement('a');
   yelpTitle.href = 'https://www.google.com/search?q=' + restName + '-' + rest[i].location.city;
+  yelpTitle.target = "_blank";
   yelpTitle.innerHTML = restName;
   let yelpPrice = document.createElement('div');
   yelpPrice.innerHTML = restPrice;
@@ -67,6 +68,7 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
 
   let yelpReview = document.createElement('a');
   yelpReview.href = rest[i].url;
+  yelpReview.target = "_blank";
   yelpReview.innerHTML = 'Read Reviews'
   yelpColumn1.appendChild(yelpTitle);
   yelpColumn1.appendChild(yelpPrice);
