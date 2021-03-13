@@ -16,8 +16,8 @@ function parkInfo(parkCode) {
         let parksImgURL = data.data[0].images[0].url;
         let parksDescr = data.data[0].description;
         let parksWeather = data.data[0].weatherInfo;
-        let parksAdmission = data.data[0].entranceFees.cost;
-        if (parksAdmission == undefined) {
+        let parksAdmission = data.data[0].entranceFees[0].cost;
+        if (parksAdmission === undefined) {
             parksAdmission = "Unknown. Please visit national park website for further information.";
         }
         let parksOpHoursDescr = data.data[0].operatingHours[0].description;
@@ -33,7 +33,9 @@ function parkInfo(parkCode) {
         parksCard.classList.add("tile");
         parksCard.classList.add("is-vertical");
 
-        let cardTitle = document.createElement("h4");
+        let cardTitle = document.createElement("a");
+        cardTitle.href = data.data[0].url;
+        cardTitle.target = "_blank";
         cardTitle.innerHTML = parksName;
 
         let parkContain = document.createElement("div");
@@ -59,7 +61,7 @@ function parkInfo(parkCode) {
         let lineBreak2 = document.createElement("br");
 
         let fees = document.createElement("div");
-        fees.innerHTML = "Adult Day Pass Cost: " + parksAdmission;
+        fees.innerHTML = "Adult Day Pass Cost: $" + parksAdmission;
         let opHoursDescr = document.createElement("div");
         opHoursDescr.innerHTML = "Operating Hours: " + parksOpHoursDescr;
         let opHoursSun = document.createElement("div");

@@ -155,7 +155,8 @@ h1 {
   padding: 3%;
 }
 
-.park-data h4 {
+.park-data a {
+  font-family: 'Montserrat', sans-serif;
   font-size: 32px;
   font-weight: 600;
   padding-bottom: 20px;
